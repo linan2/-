@@ -4,8 +4,8 @@
  
 */
 void setup() {
-  
   Serial.begin(9600);         //使用9600速率进行串口通讯
+   Serial.println("I have ready");        //
 }
 
 void loop() {
@@ -16,4 +16,18 @@ void loop() {
 
   Serial.println(vol);                   //串口输出温度数据
   delay(2000);                           //等待2秒，控制刷新速度
+
+  
+  if(Serial.available() > 0)            //判断串口缓冲器是否有数据载入
+  {
+    int value;
+    int ctrl=2;
+  value = Serial.read();                      //读取串口数据
+  analogWrite(ctrl,value);
+  Serial.println("OK! You have sended a message!Your english is very bad!!!!");
+  delay(10);
+  }
 }
+
+
+
